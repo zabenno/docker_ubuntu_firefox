@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  firefox:
+    shm_size: 2gb #Required for video streaming performance.
+    image: ff_test
+#   security_opt:
+#     - apparmor:docker-firefox
+    environment:
+      - DISPLAY=unix$DISPLAY
+      - PULSE_SERVER=${XDG_RUNTIME_DIR}/pulse/native
+      - PULSE_COOKIE=/tmp/pulseaudio.cookie
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native
+      - /home/$USER/.config/pulse/cookie/:/tmp/pulseaudio.cookie
+#      - $FF_POLICY_PATH:/usr/lib/firefox/distribution/policies.json
