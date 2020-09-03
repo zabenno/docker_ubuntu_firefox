@@ -2,7 +2,7 @@ version: "3.3"
 services:
   firefox:
     shm_size: 2gb #Required for video streaming performance.
-    image: ff_test
+    image: zabenno/firefox
 #   security_opt:
 #     - apparmor:docker-firefox
     environment:
