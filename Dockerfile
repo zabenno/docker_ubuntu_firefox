@@ -28,7 +28,8 @@ USER firefox
 
 #Setting default app for file browser to pcmanfm.
 RUN mkdir /home/firefox/.config && \
-    xdg-mime default pcmanfm.desktop inode/directory
+    xdg-mime default pcmanfm.desktop inode/directory && \
+    xdg-mime default firefox.desktop audio/mp3
 
 #Setting firefox to launch.
 ENTRYPOINT ["firefox"]
