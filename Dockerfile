@@ -7,7 +7,6 @@ RUN apt update && DEBIAN_FRONTEND='noninteractive' apt upgrade -y && DEBIAN_FRON
     pulseaudio \
     firefox \
     xdg-utils \
-    pcmanfm\
     fonts-dejavu-core fonts-freefont-ttf fonts-liberation fonts-lklug-sinhala \
     fonts-sil-abyssinica fonts-sil-padauk fonts-thai-tlwg fonts-tibetan-machine \
     fonts-indic fonts-kacst-one fonts-khmeros-core fonts-lao \
@@ -28,7 +27,6 @@ USER firefox
 
 #Setting default app for file browser to pcmanfm.
 RUN mkdir /home/firefox/.config && \
-    xdg-mime default pcmanfm.desktop inode/directory && \
     xdg-mime default firefox.desktop audio/mp3
 
 #Setting firefox to launch.
