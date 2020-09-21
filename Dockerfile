@@ -11,7 +11,7 @@ RUN apt update && DEBIAN_FRONTEND='noninteractive' apt upgrade -y && DEBIAN_FRON
     fonts-dejavu-core fonts-freefont-ttf fonts-liberation fonts-lklug-sinhala \
     fonts-sil-abyssinica fonts-sil-padauk fonts-thai-tlwg fonts-tibetan-machine \
     fonts-indic fonts-kacst-one fonts-khmeros-core fonts-lao fonts-lyx \
-    dmz-cursor-theme libavcodec58 && \
+    dmz-cursor-theme libavcodec57 && \
     apt-add-repository ppa:elementary-os/os-patches && \
     apt-add-repository ppa:elementary-os/stable && \
     apt update && \
