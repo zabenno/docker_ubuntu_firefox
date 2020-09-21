@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:18.04
 
 LABEL maintainer="zabenno"
 
@@ -7,13 +7,13 @@ RUN apt update && DEBIAN_FRONTEND='noninteractive' apt upgrade -y && DEBIAN_FRON
     pulseaudio \
     firefox \
     xdg-utils \
-    gnupg \
+    software-properties-common \
     fonts-dejavu-core fonts-freefont-ttf fonts-liberation fonts-lklug-sinhala \
     fonts-sil-abyssinica fonts-sil-padauk fonts-thai-tlwg fonts-tibetan-machine \
     fonts-indic fonts-kacst-one fonts-khmeros-core fonts-lao fonts-lyx \
     dmz-cursor-theme libavcodec58 && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BF36996C4E1F8A59 &&\
-    echo "deb http://ppa.launchpad.net/elementary-os/stable/ubuntu bionic main" >> /etc/apt/sources.list && \
+    apt-add-repository ppa:elementary-os/os-patches && \
+    apt-add-repository ppa:elementary-os/stable && \
     apt update && \
     apt install -y --no-install-recommends pantheon-files && \
     rm -rf /var/lib/apt/lists/* 
