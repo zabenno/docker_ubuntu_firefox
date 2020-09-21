@@ -12,7 +12,7 @@ RUN apt update && DEBIAN_FRONTEND='noninteractive' apt upgrade -y && DEBIAN_FRON
     fonts-sil-abyssinica fonts-sil-padauk fonts-thai-tlwg fonts-tibetan-machine \
     fonts-indic fonts-kacst-one fonts-khmeros-core fonts-lao fonts-lyx \
     dmz-cursor-theme libavcodec58 && \
-    apt-key adv --keyserver --keyserver.ubuntu.com --recv-keys BF36996C4E1F8A59 &&\
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BF36996C4E1F8A59 &&\
     echo "deb http://ppa.launchpad.net/elementary-os/stable/ubuntu bionic main" >> /etc/apt/sources.list && \
     apt update && \
     apt install -y --no-install-recommends pantheon-files && \
