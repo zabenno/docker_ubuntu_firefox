@@ -7,10 +7,12 @@ RUN apt update && DEBIAN_FRONTEND='noninteractive' apt upgrade -y && DEBIAN_FRON
     pulseaudio \
     firefox \
     xdg-utils \
-    fonts-dejavu-core fonts-freefont-ttf fonts-liberation fonts-lklug-sinhala \
-    fonts-sil-abyssinica fonts-sil-padauk fonts-thai-tlwg fonts-tibetan-machine \
-    fonts-indic fonts-kacst-one fonts-khmeros-core fonts-lao \
-    dmz-cursor-theme libavcodec57 && \
+    software-properties-common \
+    libavcodec57 && \
+    apt-add-repository ppa:elementary-os/os-patches && \
+    apt-add-repository ppa:elementary-os/stable && \
+    apt update && \
+    apt install -y --no-install-recommends pantheon-files && \
     rm -rf /var/lib/apt/lists/* 
 
 #Creating firefox user and group.
