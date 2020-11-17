@@ -23,13 +23,13 @@ RUN apt update && DEBIAN_FRONTEND='noninteractive' apt upgrade -y && DEBIAN_FRON
     mkdir -p /usr/lib/firefox/distribution/ && \
     touch /usr/lib/firefox/distribution/policies.json && \
     chmod 644 /usr/lib/firefox/distribution/policies.json && \
-    chown firefox:firefox /usr/lib/firefox/distribution/policies.json
+    chown firefox:firefox /usr/lib/firefox/distribution/policies.json && \
+    su -c "mkdir /home/firefox/.config" firefox && \
+    su -c "xdg-mime default firefox.desktop audio/mp3" firefox && \
+    DEBIAN_FRONTEND='noninteractive' apt remove software-properties-common xdg-utils -y && \
+    DEBIAN_FRONTEND='noninteractive' apt autoremove -y
 
 USER firefox
-
-#Setting default app for file browser to pcmanfm.
-RUN mkdir /home/firefox/.config && \
-    xdg-mime default firefox.desktop audio/mp3
 
 #Setting firefox to launch.
 ENTRYPOINT ["firefox"]
