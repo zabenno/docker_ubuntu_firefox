@@ -16,15 +16,11 @@ RUN apt update && DEBIAN_FRONTEND='noninteractive' apt upgrade -y && DEBIAN_FRON
     apt-add-repository ppa:elementary-os/os-patches && \
     apt-add-repository ppa:elementary-os/stable && \
     apt update && \
-    apt install -y --no-install-recommends pantheon-files && \
-    rm -rf /var/lib/apt/lists/* 
-
-#Creating firefox user and group.
-RUN groupadd -r firefox && \
-    useradd -r -m -g firefox -G audio,video firefox
-
-#Creating and setting permissions for firefox policies to be loaded at runtime.
-RUN mkdir -p /usr/lib/firefox/distribution/ && \
+    DEBIAN_FRONTEND='noninteractive' apt install -y --no-install-recommends pantheon-files && \
+    rm -rf /var/lib/apt/lists/* && \
+    groupadd -r firefox && \
+    useradd -r -m -g firefox -G audio,video firefox && \
+    mkdir -p /usr/lib/firefox/distribution/ && \
     touch /usr/lib/firefox/distribution/policies.json && \
     chmod 644 /usr/lib/firefox/distribution/policies.json && \
     chown firefox:firefox /usr/lib/firefox/distribution/policies.json
