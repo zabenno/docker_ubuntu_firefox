@@ -12,24 +12,20 @@ RUN apt update && DEBIAN_FRONTEND='noninteractive' apt upgrade -y && DEBIAN_FRON
     apt-add-repository ppa:elementary-os/os-patches && \
     apt-add-repository ppa:elementary-os/stable && \
     apt update && \
-    apt install -y --no-install-recommends pantheon-files && \
-    rm -rf /var/lib/apt/lists/* 
-
-#Creating firefox user and group.
-RUN groupadd -r firefox && \
-    useradd -r -m -g firefox -G audio,video firefox
-
-#Creating and setting permissions for firefox policies to be loaded at runtime.
-RUN mkdir -p /usr/lib/firefox/distribution/ && \
+    DEBIAN_FRONTEND='noninteractive' apt install -y --no-install-recommends pantheon-files && \
+    rm -rf /var/lib/apt/lists/* && \
+    groupadd -r firefox && \
+    useradd -r -m -g firefox -G audio,video firefox && \
+    mkdir -p /usr/lib/firefox/distribution/ && \
     touch /usr/lib/firefox/distribution/policies.json && \
     chmod 644 /usr/lib/firefox/distribution/policies.json && \
-    chown firefox:firefox /usr/lib/firefox/distribution/policies.json
+    chown firefox:firefox /usr/lib/firefox/distribution/policies.json && \
+    su -c "mkdir /home/firefox/.config" firefox && \
+    su -c "xdg-mime default firefox.desktop audio/mp3" firefox && \
+    DEBIAN_FRONTEND='noninteractive' apt remove software-properties-common xdg-utils -y && \
+    DEBIAN_FRONTEND='noninteractive' apt autoremove -y
 
 USER firefox
-
-#Setting default app for file browser to pcmanfm.
-RUN mkdir /home/firefox/.config && \
-    xdg-mime default firefox.desktop audio/mp3
 
 #Setting firefox to launch.
 ENTRYPOINT ["firefox"]
