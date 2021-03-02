@@ -1,7 +1,5 @@
 FROM ubuntu:18.04
 
-LABEL maintainer="zabenno"
-
 #Installing dependencies.
 RUN apt update && DEBIAN_FRONTEND='noninteractive' apt upgrade -y && DEBIAN_FRONTEND='noninteractive' apt install -y --no-install-recommends \
     pulseaudio \
